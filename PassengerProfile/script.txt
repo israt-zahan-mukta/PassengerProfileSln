@@ -1,0 +1,23 @@
+﻿CREATE TABLE [dbo].[SeatType]
+(
+	[SeatTypeId] INT NOT NULL PRIMARY KEY Identity(200,1),
+	SeatTypeName varchar(15) NOT NULL
+)
+CREATE TABLE [dbo].[Passenger] (
+    [PassengerId] INT PRIMARY KEY IDENTITY (1, 1) NOT NULL,
+    [FisrtName]   VARCHAR (10)  NOT NULL,
+    [LastName]    VARCHAR (10)  NOT NULL,
+    [BookingDate] DATETIME      NOT NULL,
+    [IsTransit]   BIT           NOT NULL,
+    [BasicPrise]  DECIMAL (18)  NOT NULL,
+    [MobileNo]    CHAR (11)     NOT NULL,
+    [ImagePath]   VARCHAR (200) NULL,
+    SeatTypeId INT NOT NULL REFERENCES SeatType(SeatTypeId)
+);
+CREATE TABLE [dbo].[SeatFacility] (
+    [SeatFacilityId] INT IDENTITY (100, 1) NOT NULL,
+    [FacilityName] VARCHAR (25) NOT NULL,
+    [Price]        DECIMAL (18,2) NOT NULL,
+    [PassengerId]  INT          NOT NULL,
+    PRIMARY KEY CLUSTERED ([SeatFacilityId] ASC)
+);
